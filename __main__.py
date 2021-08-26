@@ -215,7 +215,7 @@ class File:
 
             self.map.append({
                 'lbn': lbn,
-                'block_count': block_count,
+                'block_count': block_count + 1,
             })
             self.total_block_count += block_count
 
@@ -342,6 +342,9 @@ class ODS2(Operations):
                 self.mfd = file
 
             index = file.fid.file_number - 1
+            if index == -1:
+                continue
+
             self.files[index] = File(self.disk, offset)
             count += 1
 
